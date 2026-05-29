@@ -1,0 +1,23 @@
+{% assign blog_category = include.category | downcase %}
+{% assign blog_category_label = include.label | default: include.category %}
+{% assign written_year = "None" %}
+{% assign rendered_posts = 0 %}
+
+<section class="blog-tab-panel blog-tab-panel--{{ blog_category }}" id="blog-{{ blog_category }}">
+  {% for post in site.posts %}
+    {% assign post_blog_category = post.blog_category | default: "life" | downcase %}
+    {% if post_blog_category == blog_category %}
+      {% assign rendered_posts = rendered_posts | plus: 1 %}
+      {% capture year %}{{ post.date | date: "%Y" }}{% endcapture %}
+      {% if year != written_year %}
+        <h2 id="{{ blog_category }}-{{ year | slugify }}" class="archive__subtitle">{{ year }}</h2>
+        {% assign written_year = year %}
+      {% endif %}
+      {% include archive-single.html %}
+    {% endif %}
+  {% endfor %}
+
+  {% if rendered_posts == 0 %}
+    <p class="blog-empty">No {{ blog_category_label | downcase }} posts yet.</p>
+  {% endif %}
+</section>
