@@ -7,9 +7,16 @@ redirect_from:
   - /about.html
 ---
 
-<!--
-在这里写首页说明。点击上方按钮后会发布到 GitHub Pages 首页。
-支持 Markdown、代码块、数学公式和本地图片。
--->
+# Obsidian Homepage Image Test 1781096597899
 
-<!-- obsidian_homepage_publish_id: 1781096636475-q0iux89w -->
+This temporary homepage verifies local image publishing.
+
+![Homepage publish image](/images/obsidian-homepage/homepage/01-homepage-image-test-1781096597899.svg)
+
+Inline math: \\(a^2+b^2=c^2\\).
+
+~~~python
+print("homepage image test")
+~~~
+
+<!-- obsidian_homepage_publish_id: 1781096802523-p54dcpjz -->
