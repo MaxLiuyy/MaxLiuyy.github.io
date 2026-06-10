@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240" role="img" aria-label="Asset publish test">
+  <rect width="640" height="240" fill="#f7f7f4"/>
+  <rect x="40" y="40" width="560" height="160" fill="#ffffff" stroke="#2f4f4f" stroke-width="4"/>
+  <circle cx="140" cy="120" r="48" fill="#6c99bb"/>
+  <path d="M240 150 L300 85 L360 150 Z" fill="#a8c373"/>
+  <text x="420" y="112" font-family="Arial, sans-serif" font-size="28" fill="#333333">Blog Asset</text>
+  <text x="420" y="148" font-family="Arial, sans-serif" font-size="18" fill="#666666">publish test</text>
+</svg>
