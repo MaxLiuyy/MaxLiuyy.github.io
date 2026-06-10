@@ -15,16 +15,16 @@ This is a temporary test post from Obsidian.
 
 If this page appears on the GitHub Pages blog, the one-click publishing pipeline is working.
 
-## Markdown Code Test
+## 1 Markdown Code Test
 
 ```python
 def hello(name: str) -> str:
     return f"hello, {name}"
 ```
 
-## Math Test
+## 2 Math Test
 
-Inline math: \(a^2 + b^2 = c^2\).
+Inline math: $a^2 + b^2 = c^2$.
 
 Display math:
 
