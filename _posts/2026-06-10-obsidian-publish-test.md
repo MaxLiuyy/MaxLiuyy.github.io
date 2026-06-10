@@ -24,7 +24,9 @@ def hello(name: str) -> str:
 
 ## 2 Math Test
 
-Inline math: $a^2 + b^2 = c^2$.
+Inline math with Obsidian dollar syntax: \\(a^2 + b^2 = c^2\\).
+
+Inline math with LaTeX delimiters: \\(e^{i\pi} + 1 = 0\\).
 
 Display math:
 
