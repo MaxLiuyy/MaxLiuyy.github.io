@@ -12,28 +12,22 @@ redirect_from:
 
 {% include base_path %}
 
-{% assign research_count = 0 %}
-{% assign life_count = 0 %}
-{% for post in site.posts %}
-  {% assign post_blog_category = post.blog_category | default: "life" | downcase %}
-  {% if post_blog_category == "research" %}
-    {% assign research_count = research_count | plus: 1 %}
-  {% elsif post_blog_category == "life" %}
-    {% assign life_count = life_count | plus: 1 %}
-  {% endif %}
-{% endfor %}
-
-<div class="blog-archive">
-  <input class="blog-tab-input" type="radio" name="blog-category" id="blog-tab-research" {% if research_count > 0 or life_count == 0 %}checked{% endif %}>
-  <input class="blog-tab-input" type="radio" name="blog-category" id="blog-tab-life" {% if research_count == 0 and life_count > 0 %}checked{% endif %}>
-
-  <div class="blog-tab-list">
-    <label class="blog-tab-label" for="blog-tab-research">Research</label>
-    <label class="blog-tab-label" for="blog-tab-life">Life</label>
-  </div>
-
-  <div class="blog-tab-panels">
-    {% include blog-category-panel.html category="research" label="Research" %}
-    {% include blog-category-panel.html category="life" label="Life" %}
-  </div>
+{% comment %}
+  All posts in one column, newest first. Each entry shows the title and date, then the
+  post's subtitle and tags (both optional, set from the note's properties by the blog
+  publish button).
+{% endcomment %}
+<div class="blog-list">
+  {% for post in site.posts %}
+    <article class="blog-entry">
+      <div class="blog-entry__head">
+        <a class="blog-entry__title" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+        <time class="blog-entry__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+      </div>
+      {% if post.subtitle %}<p class="blog-entry__subtitle">{{ post.subtitle }}</p>{% endif %}
+      {% if post.tags.size > 0 %}<p class="blog-entry__tags">{{ post.tags | join: " · " }}</p>{% endif %}
+    </article>
+  {% else %}
+    <p class="blog-empty">No posts yet.</p>
+  {% endfor %}
 </div>

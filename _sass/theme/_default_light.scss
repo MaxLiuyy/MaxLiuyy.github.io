@@ -130,3 +130,60 @@ h1, h2, h3, h4, h5, h6, strong, b {
         font-size: 0.8em;
     }
 }
+
+/* Blog list: one column of posts. Each entry has the title with its date on the right, then an italic subtitle and a line of tags. The secondary lines fade the
+   text color instead of using the light gray, which is too faint on white. */
+.blog-list {
+    margin-top: 1.5em;
+}
+
+.blog-entry {
+    margin-bottom: 1.4em;
+}
+
+.blog-entry__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5em;
+}
+
+.page .blog-entry__title,
+.archive .blog-entry__title {
+    color: var(--global-text-strong-color);
+    font-size: 1.1em;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+        text-decoration-color: var(--global-link-underline-color);
+    }
+}
+
+.blog-entry__date {
+    flex-shrink: 0;
+    color: var(--global-text-color);
+    opacity: 0.6;
+    font-family: "IBM Plex Mono", $monospace;
+    font-size: 0.8em;
+}
+
+.blog-entry__subtitle {
+    margin: 0.15em 0 0;
+    color: var(--global-text-color);
+    opacity: 0.75;
+    font-style: italic;
+}
+
+.blog-entry__tags {
+    margin: 0.15em 0 0;
+    color: var(--global-text-color);
+    opacity: 0.6;
+    font-size: 0.8em;
+}
+
+.blog-empty {
+    margin: 1.5em 0;
+    color: var(--global-text-color-light);
+    font-style: italic;
+}
