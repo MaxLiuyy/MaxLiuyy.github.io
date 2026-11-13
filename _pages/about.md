@@ -12,7 +12,7 @@ redirect_from:
 
 I'm Yiyang Liu (刘逸阳), an undergraduate at Xingjian College, Tsinghua University, majoring in Theoretical and Applied Mechanics & Vehicle Engineering. I will continue as a Ph.D. student at the Institute for AI Industry Research (AIR), Tsinghua University, advised by Prof. Ya-Qin Zhang.
 
-I lead pre-training at Discover Robotics, where we build foundation models for robots. Some things that I come to believe: start simple; evaluation matters most (measure how a model grows instead of whether it passes!);  value data by what it teaches the model (not by how clean it looks).
+I lead pre-training at Discover Robotics, where we build foundation models for robots. Some things that I've come to believe: start simple; evaluation matters most (measure how a model grows instead of whether it passes!);  value data by what it teaches the model (not by how clean it looks).
 
 I'm always happy to chat. So please [email](mailto:maxliuyy@gmail.com) me!
 
@@ -41,4 +41,4 @@ I like well-made tools (especially digital ones), clear writing and simple desig
 | May 05, 2026 | Our paper [CFG-Ctrl](https://arxiv.org/abs/2603.03281) was accepted to CVPR 2026 and selected as a <mark>Highlight</mark>. |
 |              |                                                                                                                   |
 
-<!-- obsidian_homepage_publish_id: 1794553796156-qbjzmc77 -->
+<!-- obsidian_homepage_publish_id: 1794554998932-6korxeqj -->
