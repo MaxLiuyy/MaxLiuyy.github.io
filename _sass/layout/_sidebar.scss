@@ -42,6 +42,17 @@
     padding-right: 0;
   }
 
+  // A fixed sidebar sizes its percentage width against the viewport, not the centered
+  // #main container, so it grew wider than its column and long text ran into the page.
+  // Size it as span(2 of 12) of the container instead: (2 + 1/4) / (12 + 11/4) = 0.15254.
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    width: calc((min(100vw, #{$large}) - 2em) * 0.15254);
+  }
+
+  @include breakpoint($x-large) {
+    width: calc((min(100vw, #{$x-large}) - 2em) * 0.15254);
+  }
+
   h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     font-family: $sans-serif-narrow;

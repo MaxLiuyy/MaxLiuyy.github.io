@@ -1,0 +1,107 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% !Mode:: "TeX:UTF-8"
+
+\documentclass{resume}
+\usepackage{zh_CN-Adobefonts_external} % Simplified Chinese Support using external fonts (./fonts/zh_CN-Adobe/)
+%\usepackage{zh_CN-Adobefonts_internal} % Simplified Chinese Support using system fonts
+\usepackage{linespacing_fix} % disable extra space before next section
+\usepackage{cite}
+
+\setstretch{1.06}
+\setlist[itemize]{topsep=0.2ex, itemsep=0.15ex, leftmargin=1.5pc}
+
+\begin{document}
+\pagenumbering{gobble} % suppress displaying page number
+
+\name{刘逸阳}
+
+\basicInfo{
+  \email{liuyiyang23@mails.tsinghua.edu.cn} \textperiodcentered{}
+  \phone{13429364568}
+}
+
+\section{教育背景}
+\textbf{清华大学}\quad \textit{行健书院}\hfill{学士，2023--2027（预计毕业）}
+\begin{itemize}
+    \item \textbf{GPA}: 3.9/4.0 \space (院系排名3/157，班级排名1/32)
+    \item 学业荣誉：\textbf{邓稼先奖学金}；综合优秀奖学金
+    \item 研究兴趣：3D计算机视觉，世界模型，具身智能
+    \item 推研方向为清华大学智能产业研究院，导师为张亚勤院士
+\end{itemize}
+
+\vspace{1ex}
+
+\section{学术成果}
+
+\textbf{CFG-Ctrl: Control-Based Classifier-Free Diffusion Guidance} \hfill CVPR 2026(\textit{Highlight}) \quad {\hrefWithArrow{https://hanyang-21.github.io/CFG-Ctrl/}{Paper}\;}
+\vspace{1ex}
+\role{Hanyang Wang*,\uline{\bf Yiyang \bf Liu}*,Jiawei Chi,Fangfu Liu,Ran Xue,Yueqi Duan\dag}\;
+\vspace{0.5ex}
+\begin{itemize}
+    \item 整合视频生成模型的CFG理论，把视频生成建模为控制问题，提出统一的理论框架。
+    \item 基于滑模控制设计非线性反馈控制的SMC-CFG，增强CFG稳定性
+\end{itemize}
+
+\vspace{1ex}
+
+
+\textbf{Structured Noise Guided Video Diffusion for Consistent 3D Scene Synthesis} \hfill TPAMI 2026 - 在投
+\vspace{1ex}
+\role{Hanyang Wang, Fangfu Liu, \uline{\bf Yiyang \bf Liu}, Jiawei Chi, Jiwen Lu, Jie Zhou, Yueqi Duan\dag}\;
+\vspace{0.5ex}
+\begin{itemize}
+    \item 采用多视图渲染提取几何结构化噪声的Noise-from-Motion机制，改善大规模运动场景3D一致性。
+    \item 完成CVPR期刊扩展实验。
+\end{itemize}
+
+\vspace{1ex}
+
+\textbf{Metadata-Enhanced Speech Emotion Recognition: Augmented Residual Integration and Co-Attention in Two-Stage Fine-Tuning} \hfill {ICASSP 2025 \quad {\hrefWithArrow{https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10890812}{Paper}\;}}
+\vspace{1ex}
+\role{Z. Wan, Z. Qiu, \uline{\bf Y. \bf Liu}, and W.-Q. Zhang\dag}\;
+\vspace{0.5ex}
+\begin{itemize}
+    \item 对Wav2Vec-2.0-base、HuBert-base、WavLM-base三个baseline在IEMOCAP、EMOV-DB等数据集上进行实验，评估其情感判定准确率。
+\end{itemize}
+
+\vspace{1ex}
+
+\section{科研经历}
+
+\datedsubsection{世界模型搭建}{2025年11月至今}
+
+\textit{求之科技}\& AIR
+\vspace{0.5ex}
+\begin{itemize}
+    \item 负责 3D 轨迹预测主要工作，利用 PointTransformerV3 结合 action embedding 预测 3D 轨迹
+    \item 承担原子操作实现action\&trajectory 联合预测的模型搭建主要工作，作为最终方案基线
+\end{itemize}
+
+\vspace{1ex}
+
+\datedsubsection{面向狭小空间场景建模的电磁跳跃机器人}{2025年12月至今}
+
+\textit{共同一作，“挑战杯”全国大学生课外学术科技作品竞赛}
+\vspace{0.5ex}
+\begin{itemize}
+    \item 主要负责视频处理和场景重建模块
+    \item 结合光线增强和SLAM等方法构建狭小空间场景。
+    \item 获得\textbf{院系第一名}，校级评奖中。
+\end{itemize}
+
+\vspace{1ex}
+
+\datedsubsection{基于机器视觉的湿模厚度测量装置}{2024年12月 -- 2025年4月}
+
+\textit{第三作者，“挑战杯”全国大学生课外学术科技作品竞赛}{}
+\vspace{0.5ex}
+\begin{itemize}
+    \item 实现基于Mobile Net的机器视觉算法开发和树莓派、Arduino串口通信。
+\end{itemize}
+
+\vspace{1ex}
+
+
+
+\end{document}

@@ -28,21 +28,105 @@ $sidebar-screen-min-width   : 1024px;
 
 /* Default light theme for the site */
 :root {
-    --global-base-color                 : #{$primary-color};
+    --global-base-color                 : #52525b;
     --global-bg-color                   : #fff;
     --global-footer-bg-color            : #f2f3f3;
-    --global-border-color               : #{$lighter-gray};
-    --global-dark-border-color          : #bdc1c4;
-    --global-code-background-color      : #fafafa;
-    --global-code-text-color            : #{$darker-gray};
+    --global-border-color               : #e0e0e0;
+    --global-dark-border-color          : #b8b8b8;
+    --global-code-background-color      : #f5f5f5;
+    --global-code-text-color            : #18181b;
     --global-fig-caption-color          : mix(#fff,  #{$dark-gray}, 25%);
-    --global-link-color                 : #52adc8;
-    --global-link-color-hover           : mix(#000, #2f7f93, 25%);
-    --global-link-color-visited         : mix(#fff, #2f7f93, 25%);  
+    --global-link-color                 : #52525b;
+    --global-link-color-hover           : #000000;
+    --global-link-color-visited         : #52525b;
     --global-masthead-link-color        : #{$dark-gray};
     --global-masthead-link-color-hover  : mix(#000, #{$gray}, 25%);    
     --global-text-color                 : #{$dark-gray};
     --global-text-color-light           : #{$light-gray};
-    --global-thead-color                : #{$lighter-gray};
+    --global-thead-color                : #f9f7f6;
+    --global-mark-color                 : #e0e0e0;
+    --global-text-strong-color          : #{$dark-gray};
+    --global-link-underline-color       : #9191a07f;
+    --global-link-underline-color-hover : #000000;
+    --global-code-comment-color         : #949494;
 }
 
+
+/* Emphasis: a half-height gray stroke under the text, like a pencil mark */
+mark {
+    background: linear-gradient(transparent 62%, var(--global-mark-color) 62%);
+    color: inherit;
+}
+
+/* Hide the decorative code icon in the top right of code blocks
+   (prefixed with html to win over _syntax.scss, which is imported later) */
+html div.highlighter-rouge:before,
+html figure.highlight:before {
+    content: none;
+}
+
+/* Gray links are told apart from text by a soft underline that darkens on hover */
+.page__content a {
+    text-decoration-color: var(--global-link-underline-color);
+    text-underline-offset: 0.2em;
+
+    &:hover {
+        text-decoration-color: var(--global-link-underline-color-hover);
+    }
+}
+
+/* Monochrome syntax highlighting: plain code text, gray comments, bold keywords
+   (prefixed with html to win over _syntax.scss, which is imported later) */
+html .highlight [class] {
+    color: var(--global-code-text-color);
+}
+
+html .highlight .c, html .highlight .c1, html .highlight .cm, html .highlight .cs {
+    color: var(--global-code-comment-color);
+    font-style: italic;
+}
+
+html .highlight .k, html .highlight .kd, html .highlight .kn, html .highlight .kp, html .highlight .kr {
+    font-weight: 600;
+}
+
+/* Keyboard focus ring in gray instead of the template's orange */
+html a:focus {
+    outline-color: var(--global-dark-border-color);
+}
+
+/* Headings and bold use the strong text color: the same as text in light mode,
+   a step brighter in dark mode so they still stand out against the softer text */
+h1, h2, h3, h4, h5, h6, strong, b {
+    color: var(--global-text-strong-color);
+}
+
+/* Content text one step smaller than the 18px base (about 16px); the sidebar and
+   top navigation keep the base size */
+@media screen and (min-width: $medium) {
+    .page,
+    .archive {
+        font-size: 0.89em;
+    }
+}
+
+/* Publications: compact entries. Paper titles drop from h2 size to a bold line just
+   above body text, and venue, authors and notes read as smaller supporting text. */
+.archive__item--publication {
+    margin-bottom: 1.5em;
+
+    .archive__item-title {
+        margin-top: 0;
+        font-size: 1.05em;
+        line-height: 1.35;
+    }
+
+    p {
+        margin: 0.2em 0;
+        font-size: 0.9em;
+    }
+
+    .page__meta {
+        font-size: 0.8em;
+    }
+}

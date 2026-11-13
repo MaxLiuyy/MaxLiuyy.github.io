@@ -13,6 +13,17 @@
  <link rel="preload" href="{{ base_path }}/assets/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{ base_path }}/assets/css/fontawesome.css"></noscript>
 
+<!-- Serif typefaces for English and Chinese content, and IBM Plex Mono for dates -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet"/>
+
+<!-- Chinese in Noto Serif SC, one weight heavier than the Latin text -->
+<link rel="stylesheet" href="{{ base_path }}/assets/css/cjk-font.css"/>
+
+<!-- Homepage content styles, shared with Obsidian and copied here by the homepage publish button -->
+<link rel="stylesheet" href="{{ base_path }}/assets/css/homepage-content.css"/>
+
 <!-- favicon from https://commons.wikimedia.org/wiki/File:OOjs_UI_icon_academic-progressive.svg -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{ base_path }}/images/apple-touch-icon-180x180.png"/>
 <link rel="icon" type="image/svg+xml" href="{{ base_path }}/images/favicon.svg"/>

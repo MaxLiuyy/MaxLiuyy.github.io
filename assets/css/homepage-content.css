@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Homepage content styles, shared by the website and Obsidian.
+   - Obsidian: build.sh appends this file to the Homepage theme; it applies to notes
+     with "cssclasses: homepage" in their properties (04Blog/HomePage/HomePage.md).
+   - Website: the homepage publish button copies this file to
+     assets/css/homepage-content.css; the homepage body carries the "homepage" class.
+   Plain CSS only, since both sides load it as is.
+   ========================================================================== */
+
+/* News: a Markdown table with a date column and a text column, shown as a timeline.
+   The header row is hidden, so any header text works (e.g. "| Date | News |"). */
+.homepage table {
+  --table-text-size: 1em;
+  display: table;
+  width: 100%;
+  margin: 0.5em 0 1em;
+  border: none;
+  border-collapse: collapse;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.homepage table thead {
+  display: none;
+}
+
+.homepage table :is(th, td) {
+  padding: 0.35em 0;
+  border: none;
+  background: none;
+  vertical-align: top;
+  text-align: left;
+}
+
+/* Dates in IBM Plex Mono: monospace, so month names of different widths still line
+   up the day and year, and its slab-like details sit well next to the Noto Serif text */
+.homepage table td:first-child {
+  width: 8.5em;
+  padding-right: 1.5em;
+  font-family: "IBM Plex Mono", Monaco, Consolas, monospace;
+  white-space: nowrap;
+}
+
+/* Narrow screens: the date sits on its own line above the text */
+@media screen and (max-width: 600px) {
+  .homepage table :is(tr, td) {
+    display: block;
+    width: auto;
+  }
+
+  .homepage table td:first-child {
+    padding: 0.35em 0 0;
+  }
+
+  .homepage table td + td {
+    padding-top: 0;
+  }
+}
