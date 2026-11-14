@@ -1,0 +1,13 @@
+{% include base_path %}
+{% comment %}
+  One post in a blog list: the title with its date on the right, then the optional subtitle
+  and tags. Used by the /blogs/ page and the related posts under each post.
+{% endcomment %}
+<article class="blog-entry">
+  <div class="blog-entry__head">
+    <a class="blog-entry__title" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
+    <time class="blog-entry__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+  </div>
+  {% if post.subtitle %}<p class="blog-entry__subtitle">{{ post.subtitle }}</p>{% endif %}
+  {% if post.tags.size > 0 %}<p class="blog-entry__tags">{{ post.tags | join: " · " }}</p>{% endif %}
+</article>

@@ -425,9 +425,12 @@
   border-top: 1px solid var(--global-border-color);
   @include clearfix();
   float: left;
+  /* related posts are a one-column list now, so span the article's text column */
+  width: 100%;
 
   @include breakpoint($large) {
     @include pre(2.5 of 12);
+    @include span(7.5 of 12);
   }
 
   a {

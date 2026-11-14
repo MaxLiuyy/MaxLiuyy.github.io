@@ -149,7 +149,8 @@ h1, h2, h3, h4, h5, h6, strong, b {
 }
 
 .page .blog-entry__title,
-.archive .blog-entry__title {
+.archive .blog-entry__title,
+.page__related .blog-entry__title {
     color: var(--global-text-strong-color);
     font-size: 1.1em;
     text-decoration: none;
@@ -172,6 +173,7 @@ h1, h2, h3, h4, h5, h6, strong, b {
     margin: 0.15em 0 0;
     color: var(--global-text-color);
     opacity: 0.75;
+    font-size: 0.9em;
     font-style: italic;
 }
 
@@ -180,6 +182,23 @@ h1, h2, h3, h4, h5, h6, strong, b {
     color: var(--global-text-color);
     opacity: 0.6;
     font-size: 0.8em;
+}
+
+/* Related posts under a post: the same entries, smaller, with the subtitle a step below the title */
+.page__related .blog-list {
+    margin-top: 0.8em;
+}
+
+.page__related .blog-entry {
+    margin-bottom: 0.7em;
+}
+
+.page__related .blog-entry__title {
+    font-size: 0.95em;
+}
+
+.page__related .blog-entry__subtitle {
+    font-size: 0.85em;
 }
 
 .blog-empty {
