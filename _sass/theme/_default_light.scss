@@ -48,7 +48,6 @@ $sidebar-screen-min-width   : 1024px;
     --global-text-strong-color          : #{$dark-gray};
     --global-link-underline-color       : #9191a07f;
     --global-link-underline-color-hover : #000000;
-    --global-code-comment-color         : #949494;
 }
 
 
@@ -75,14 +74,9 @@ html figure.highlight:before {
     }
 }
 
-/* Monochrome syntax highlighting: plain code text, gray comments, bold keywords
-   (prefixed with html to win over _syntax.scss, which is imported later) */
-html .highlight [class] {
-    color: var(--global-code-text-color);
-}
-
+/* Syntax highlighting keeps the Solarized colors of _syntax.scss (dark mode lightens a few in
+   _default_dark.scss); comments are also italic and keywords bold */
 html .highlight .c, html .highlight .c1, html .highlight .cm, html .highlight .cs {
-    color: var(--global-code-comment-color);
     font-style: italic;
 }
 

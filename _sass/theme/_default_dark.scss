@@ -57,6 +57,22 @@ html[data-theme="dark"] {
     --global-mark-color                 : #3b3d3e;
     --global-link-underline-color       : #6b6b6b;
     --global-link-underline-color-hover : #{$text-strong};
-    --global-code-comment-color         : #949494;
+}
+
+/* Syntax highlighting on the dark background: Solarized's base01 text (#586e75) and its red and
+   orange are too dim on #242424, so plain code uses the text color and red/orange are lightened.
+   The other colors of _syntax.scss read fine on both backgrounds. */
+html[data-theme="dark"] .highlight {
+    :is(.err, .g, .l, .n, .p, .ge, .go, .gp, .gs, .gt, .ld, .na, .nl, .nn, .nx, .py, .w, .sd, .sh) {
+        color: #{$text};
+    }
+
+    :is(.gr, .kt, .sr) {
+        color: #f26d6a;
+    }
+
+    :is(.x, .gh, .gu, .kc, .no, .ni, .ne, .se) {
+        color: #e4743d;
+    }
 }
 
