@@ -94,6 +94,16 @@ layout: default
     {% if site.comments.provider and page.comments %}
       {% include comments.html %}
     {% endif %}
+
+    {% comment %}<!-- filled from the post's headings by _main.js; set toc: false to hide -->{% endcomment %}
+    {% if page.collection == 'posts' and page.toc != false %}
+      <aside class="page__toc" hidden>
+        <nav aria-label="{{ site.data.ui-text[site.locale].toc_label | default: 'On This Page' }}">
+          <p class="page__toc-title">{{ site.data.ui-text[site.locale].toc_label | default: "On This Page" }}</p>
+          <ul></ul>
+        </nav>
+      </aside>
+    {% endif %}
   </article>
 
   {% comment %}<!-- only show related on a post page when not disabled -->{% endcomment %}

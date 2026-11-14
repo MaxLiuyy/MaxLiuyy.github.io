@@ -128,6 +128,46 @@ $(document).ready(function () {
     }
   });
 
+  // Post table of contents: every heading in the post, indented one step per level below the
+  // highest level used, shown once there are at least two; the section being read is marked as current.
+  const toc = document.querySelector(".page__toc");
+  if (toc) {
+    const entries = [...document.querySelectorAll(".page__content :is(h1, h2, h3, h4, h5, h6)[id]")];
+    const levels = [...new Set(entries.map(heading => heading.tagName))].sort();
+    if (entries.length >= 2) {
+      const list = toc.querySelector("ul");
+      const links = entries.map(heading => {
+        const item = document.createElement("li");
+        const link = document.createElement("a");
+        link.href = "#" + heading.id;
+        link.textContent = heading.textContent.trim();
+        item.style.setProperty("--toc-depth", levels.indexOf(heading.tagName));
+        item.appendChild(link);
+        list.appendChild(item);
+        return link;
+      });
+      toc.hidden = false;
+
+      const markCurrent = () => {
+        const top = 90;  // just below the masthead
+        let current = 0;
+        entries.forEach((heading, i) => {
+          if (heading.getBoundingClientRect().top <= top) current = i;
+        });
+        // A short last section never reaches the top; at the bottom of the page it is the one being read
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+          current = entries.length - 1;
+        }
+        links.forEach((link, i) => {
+          if (i === current) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      };
+      window.addEventListener("scroll", markCurrent, { passive: true });
+      markCurrent();
+    }
+  }
+
   // SCSS SETTINGS - These should be the same as the settings in the relevant files
   const scssLarge = 925;          // pixels, from /_sass/_themes.scss
   const scssMastheadHeight = 70;  // pixels, from the current theme (e.g., /_sass/theme/_default.scss)
