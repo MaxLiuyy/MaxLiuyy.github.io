@@ -42,20 +42,22 @@ h2 {
   font-size: $type-size-4;
 }
 
+/* Headings never drop below body text: h3 sits between h2 and the text size,
+   h4-h6 are text-sized and set apart by weight */
 h3 {
-  font-size: $type-size-5;
+  font-size: 1.125em;
 }
 
 h4 {
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 }
 
 h5 {
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 }
 
 h6 {
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 }
 
 small, .small {
