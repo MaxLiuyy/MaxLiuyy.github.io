@@ -7,7 +7,9 @@
 
 // Constants for CDNs
 const PLOTLY_URL = "https://cdn.jsdelivr.net/npm/plotly.js@3.6.0/dist/plotly.min.js";
-const MERMAID_URL = "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+const MERMAID_URL = "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/dist/mermaid.esm.min.mjs";
+// Mermaid's bundled ELK layout; its file name changes with every Mermaid release, so update both together
+const MERMAID_ELK_URL = "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/dist/chunks/mermaid.esm.min/elk-7HBNN7NY.mjs";
 
 // Detect OS/browser preference
 const darkQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
@@ -29,6 +31,31 @@ function setTheme(theme) {
   }
 }
 
+// Mermaid config: the base theme in the site's grays and serif font, picked for the color scheme
+// at page load, and the ELK layout with network-simplex node placement and wider edge spacing
+function mermaidConfig(theme) {
+  const colors = (theme === "dark")
+    ? { background: "#121212", primaryColor: "#1e1e1e", primaryBorderColor: "#5a5a5a", primaryTextColor: "#ccc9c3",
+        secondaryColor: "#242424", tertiaryColor: "#121212", lineColor: "#8a8a8a",
+        edgeLabelBackground: "#121212", clusterBkg: "#1a1a1a", clusterBorder: "#3b3d3e" }
+    : { background: "#ffffff", primaryColor: "#f7f7f8", primaryBorderColor: "#b8b8b8", primaryTextColor: "#3f4448",
+        secondaryColor: "#f2f3f3", tertiaryColor: "#ffffff", lineColor: "#8a8f94",
+        edgeLabelBackground: "#ffffff", clusterBkg: "#fafafa", clusterBorder: "#e0e0e0" };
+  return {
+    startOnLoad: true,
+    theme: "base",
+    darkMode: theme === "dark",
+    layout: "elk-wide",
+    elk: { nodePlacementStrategy: "NETWORK_SIMPLEX" },
+    flowchart: { curve: "rounded" },
+    themeVariables: {
+      fontFamily: '"Noto Serif", "Noto Serif SC Text", "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif',
+      fontSize: "15px",
+      ...colors,
+    },
+  };
+}
+
 // Defer the loading of Mermaid to only if there is a field on the page to be rendered
 let mermaidElements = document.querySelectorAll("pre>code.language-mermaid");
 if (mermaidElements.length > 0) {
@@ -38,7 +65,16 @@ if (mermaidElements.length > 0) {
     moduleScript.type = 'module';
     moduleScript.textContent = `
       import mermaid from '${MERMAID_URL}';
-      mermaid.initialize({startOnLoad:true, theme:'default'});
+      // Mermaid hard-codes ELK's edge spacing (20 between edges, 30 to nodes), so "elk-wide"
+      // wraps its ELK layout to keep edges further apart
+      const spacing = {"elk.spacing.edgeEdge": 36, "elk.layered.spacing.edgeEdgeBetweenLayers": 30,
+        "elk.spacing.edgeNode": 30, "elk.layered.spacing.edgeNodeBetweenLayers": 36};
+      mermaid.registerLayoutLoaders([{name: "elk-wide", algorithm: "elk.layered", loader: async () => {
+        const elk = await import('${MERMAID_ELK_URL}');
+        return {render: (data, svg, helpers, options) =>
+          elk.render(data, svg, helpers, {...options, rootLayoutOptions: spacing})};
+      }}]);
+      mermaid.initialize(${JSON.stringify(mermaidConfig(determineComputedTheme()))});
       await mermaid.run({querySelector:'code.language-mermaid'});
     `;
     document.body.appendChild(moduleScript);
