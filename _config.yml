@@ -159,6 +159,10 @@ analytics:
   google:
     tracking_id          :
 
+# Visitor counts with an eye icon (GoatCounter): under each post title, and site total in the sidebar.
+# Set to the site code registered at goatcounter.com (the "xxx" in xxx.goatcounter.com), with
+# "Allow adding visitor counts on your website" enabled in its settings. Leave blank to turn off.
+goatcounter              : "maxliuyy"
 
 # Reading Files
 include:

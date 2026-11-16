@@ -2,4 +2,25 @@
 
 {% include analytics.html %}
 
+{% if site.goatcounter %}
+{% comment %}<!-- GoatCounter skips localhost by itself, so local previews are not counted -->{% endcomment %}
+<script data-goatcounter="https://{{ site.goatcounter }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+  /* Fill each [data-goatcounter-path] (see _includes/page-views.html) with its visitor count */
+  document.querySelectorAll("[data-goatcounter-path]").forEach(function (el) {
+    var path = el.getAttribute("data-goatcounter-path");
+    fetch("https://{{ site.goatcounter }}.goatcounter.com/counter/" + encodeURIComponent(path) + ".json")
+      .then(function (r) { return r.status === 404 ? { count: "0" } : r.ok ? r.json() : null; })
+      .then(function (data) {
+        if (!data) return;
+        /* GoatCounter formats counts as "17 996"; show them as "17,996" */
+        var count = Number(String(data.count).replace(/[^0-9]/g, ""));
+        el.querySelector(".page-views__count").textContent = count.toLocaleString("en-US");
+        el.style.display = "";
+      })
+      .catch(function () {});
+  });
+</script>
+{% endif %}
+
 {% include comments-providers/scripts.html %}
