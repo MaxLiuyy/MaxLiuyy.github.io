@@ -36,9 +36,9 @@ $sidebar-screen-min-width   : 1024px;
     --global-code-background-color      : #f5f5f5;
     --global-code-text-color            : #18181b;
     --global-fig-caption-color          : mix(#fff,  #{$dark-gray}, 25%);
-    --global-link-color                 : #52525b;
+    --global-link-color                 : #2b3038;
     --global-link-color-hover           : #000000;
-    --global-link-color-visited         : #52525b;
+    --global-link-color-visited         : #2b3038;
     --global-masthead-link-color        : #{$dark-gray};
     --global-masthead-link-color-hover  : mix(#000, #{$gray}, 25%);    
     --global-text-color                 : #{$dark-gray};
@@ -46,7 +46,7 @@ $sidebar-screen-min-width   : 1024px;
     --global-thead-color                : #f9f7f6;
     --global-mark-color                 : #e0e0e0;
     --global-text-strong-color          : #{$dark-gray};
-    --global-link-underline-color       : #9191a07f;
+    --global-link-underline-color       : #a3a3ae;
     --global-link-underline-color-hover : #000000;
 }
 
@@ -64,7 +64,8 @@ html figure.highlight:before {
     content: none;
 }
 
-/* Gray links are told apart from text by a soft underline that darkens on hover */
+/* Links are a shade darker than the text and carry a solid gray underline that darkens on hover,
+   so they stand out in light mode without adding a color */
 .page__content a {
     text-decoration-color: var(--global-link-underline-color);
     text-underline-offset: 0.2em;
