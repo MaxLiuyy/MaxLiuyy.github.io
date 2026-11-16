@@ -35,19 +35,12 @@
   }
 }
 
-/* Post table of contents: in the empty right column of .page on wide screens, following the
-   reader down the page; hidden on narrower screens where that column is gone */
+/* Post table of contents: in the left sidebar in place of the author profile on wide screens
+   (the sidebar stays put while the reader scrolls); hidden on narrower screens */
 .page__toc {
   display: none;
 
   @include breakpoint($large) {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    // .page's right padding is 2 of 12 columns; leave a small gap from the text
-    width: calc(20.4% - 1.5em);
-
     &:not([hidden]) {
       display: block;
     }
@@ -56,13 +49,16 @@
   nav {
     // --global-text-color-light is too faint for small text on white; mute the text color instead
     --toc-muted: color-mix(in srgb, var(--global-text-color) 65%, transparent);
-    position: sticky;
-    top: calc(#{$masthead-height} + 1em);
-    max-height: calc(100vh - #{$masthead-height} - 2em);
-    overflow-y: auto;
     font-family: $global-font-family;
     font-size: $type-size-6;
     line-height: 1.5;
+
+    // The sidebar's own p and li rules shrink the text again and switch it to sans-serif
+    p, li {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
   }
 
   .page__toc-title {
