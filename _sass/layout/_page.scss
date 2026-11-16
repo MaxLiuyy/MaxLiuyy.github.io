@@ -35,9 +35,9 @@
   }
 }
 
-/* Posts: from $x-large the table of contents sits in the left sidebar and the text moves a
-   little further right to leave a clear gap; on narrower screens there is no room for both, so
-   the contents is hidden and the text is centered on its own at the same width */
+/* Posts: once the sidebar is fixed ($sidebar-screen-min-width) the table of contents sits in it
+   and the text moves a little further right to leave a clear gap; on narrower screens there is
+   no room for both, so the contents is hidden and the text is centered on its own */
 .page--post {
   @include breakpoint($large) {
     float: none;
@@ -49,7 +49,7 @@
     padding-right: 0;
   }
 
-  @include breakpoint($x-large) {
+  @media screen and (min-width: $sidebar-screen-min-width) {
     @include span(10 of 12 last);
     @include prefix(1 of 12);
     @include suffix(1.5 of 12);
@@ -63,9 +63,21 @@
 .page__toc {
   display: none;
 
-  @include breakpoint($x-large) {
+  @media screen and (min-width: $sidebar-screen-min-width) {
     &:not([hidden]) {
       display: block;
+    }
+
+    // Wider than the profile sidebar, 2.5 of 12 columns instead of 2, taking part of the gap
+    // .page--post leaves before the text: (2.5 + 2/4) / (12 + 11/4) = 0.20339
+    &.sidebar {
+      width: calc((min(100vw, #{$large}) - 2em) * 0.20339);
+    }
+  }
+
+  @include breakpoint($x-large) {
+    &.sidebar {
+      width: calc((min(100vw, #{$x-large}) - 2em) * 0.20339);
     }
   }
 
