@@ -35,12 +35,35 @@
   }
 }
 
-/* Post table of contents: in the left sidebar in place of the author profile on wide screens
-   (the sidebar stays put while the reader scrolls); hidden on narrower screens */
+/* Posts: from $x-large the table of contents sits in the left sidebar and the text moves a
+   little further right to leave a clear gap; on narrower screens there is no room for both, so
+   the contents is hidden and the text is centered on its own at the same width */
+.page--post {
+  @include breakpoint($large) {
+    float: none;
+    width: auto;
+    max-width: 770px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  @include breakpoint($x-large) {
+    @include span(10 of 12 last);
+    @include prefix(1 of 12);
+    @include suffix(1.5 of 12);
+    max-width: none;
+    margin-left: 0;
+  }
+}
+
+/* Post table of contents: in the left sidebar in place of the author profile (the sidebar
+   stays put while the reader scrolls); see .page--post above for when it shows */
 .page__toc {
   display: none;
 
-  @include breakpoint($large) {
+  @include breakpoint($x-large) {
     &:not([hidden]) {
       display: block;
     }
