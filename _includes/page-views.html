@@ -1,9 +1,7 @@
 {% comment %}
-  A visitor count with an eye icon, from GoatCounter (site code in _config.yml).
-  include.path is the counted path, default this page; "TOTAL" counts the whole site.
-  include.tag is the wrapping element (default span), include.before a separator shown with
-  the count, include.sidebar spaces the icon like the other sidebar links.
-  Hidden until the count arrives, so nothing shows if GoatCounter is unreachable.
-  The counts are filled in by the script in _includes/scripts.html.
+  This page's visitor count with an eye icon, from GoatCounter (site code in _config.yml).
+  include.before is a separator shown with the count. Hidden until the count arrives, so
+  nothing shows if GoatCounter is unreachable. The count is filled in by the script in
+  _includes/scripts.html.
 {% endcomment %}
-{% if site.goatcounter %}{% assign tag = include.tag | default: "span" %}<{{ tag }} class="page-views{% if include.class %} {{ include.class }}{% endif %}" data-goatcounter-path="{{ include.path | default: page.url }}" style="display: none;">{% if include.before %}{{ include.before }} {% endif %}<i class="fas fa-fw fa-eye{% if include.sidebar %} icon-pad-right{% endif %}" aria-hidden="true"></i>{% unless include.sidebar %} {% endunless %}<span class="page-views__count"></span>{% if include.label %} {{ include.label }}{% endif %}</{{ tag }}>{% endif %}
+{% if site.goatcounter %}<span class="page-views" data-goatcounter-path="{{ page.url }}" style="display: none;">{% if include.before %}{{ include.before }} {% endif %}<i class="fas fa-fw fa-eye" aria-hidden="true"></i> <span class="page-views__count"></span>{% if include.label %} {{ include.label }}{% endif %}</span>{% endif %}
