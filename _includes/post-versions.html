@@ -1,0 +1,9 @@
+{% comment %}
+  Sets `versions` to every language version of include.post, paired by the translation_key the
+  Obsidian publish plugin writes (just the post itself when it is in one language only).
+{% endcomment %}
+{% if include.post.translation_key %}
+  {% assign versions = site.posts | where: "translation_key", include.post.translation_key %}
+{% else %}
+  {% assign versions = site.posts | where: "url", include.post.url %}
+{% endif %}

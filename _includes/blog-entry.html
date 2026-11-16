@@ -1,13 +1,20 @@
 {% include base_path %}
 {% comment %}
   One post in a blog list: the title with its date on the right, then the optional subtitle
-  and tags. Used by the /blogs/ page and the related posts under each post.
+  and tags. Used by the /blogs/ page and the related posts under each post. A post written in
+  both Chinese and English gets one block per language with only the original shown; _main.js
+  then shows the reader's language where the post has it.
 {% endcomment %}
-<article class="blog-entry">
-  <div class="blog-entry__head">
-    <a class="blog-entry__title" href="{{ base_path }}{{ post.url }}">{{ post.title }}</a>
-    <time class="blog-entry__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y.%m.%d" }}</time>
+{% include post-versions.html post=post %}
+<article class="blog-entry"{% if versions.size > 1 %} data-translations{% endif %}>
+  {% for version in versions %}
+  <div class="blog-entry__version" lang="{{ version.lang | default: site.locale | slice: 0,2 }}" data-lang="{{ version.lang }}"{% if version.translation %} hidden{% else %} data-original{% endif %}>
+    <div class="blog-entry__head">
+      <a class="blog-entry__title" href="{{ base_path }}{{ version.url }}">{{ version.title }}</a>
+      <time class="blog-entry__date" datetime="{{ version.date | date_to_xmlschema }}">{{ version.date | date: "%Y.%m.%d" }}</time>
+    </div>
+    {% if version.subtitle %}<p class="blog-entry__subtitle">{{ version.subtitle }}</p>{% endif %}
+    {% if version.tags.size > 0 %}<p class="blog-entry__tags">{{ version.tags | join: " · " }}</p>{% endif %}
   </div>
-  {% if post.subtitle %}<p class="blog-entry__subtitle">{{ post.subtitle }}</p>{% endif %}
-  {% if post.tags.size > 0 %}<p class="blog-entry__tags">{{ post.tags | join: " · " }}</p>{% endif %}
+  {% endfor %}
 </article>

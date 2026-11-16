@@ -53,7 +53,27 @@ layout: default
                 {% if post_date %}
                   <span><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }} <time datetime="{{ post_date | date_to_xmlschema }}">{{ post_date | date: "%B %d, %Y" }}</time></span>
                 {% endif %}
-                {% include page-views.html label="views" before='<span class="archive__meta-separator">·</span>' %}
+                {% include post-versions.html post=page %}
+                {% assign view_paths = versions | map: "url" | join: " " %}
+                {% include page-views.html label="views" paths=view_paths before='<span class="archive__meta-separator">·</span>' %}
+                {% comment %}<!-- a post in both Chinese and English links to its other version -->{% endcomment %}
+                {% if versions.size > 1 %}
+                  <span class="archive__meta-separator">·</span>
+                  <span class="post-lang">
+                    {% assign lang_order = "zh,en" | split: "," %}
+                    {% for lang in lang_order %}
+                      {% assign version = versions | where: "lang", lang | first %}
+                      {% if version %}
+                        {% unless forloop.first %}<span aria-hidden="true">/</span>{% endunless %}
+                        {% if version.url == page.url %}
+                          <span lang="{{ lang }}" aria-current="page">{% if lang == "zh" %}中文{% else %}EN{% endif %}</span>
+                        {% else %}
+                          <a href="{{ base_path }}{{ version.url }}" lang="{{ lang }}" hreflang="{{ lang }}" data-lang-choice="{{ lang }}">{% if lang == "zh" %}中文{% else %}EN{% endif %}</a>
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </span>
+                {% endif %}
               </p>
             {% endif %}
           {% else %}
@@ -119,6 +139,9 @@ layout: default
       {% endif %}
       <div class="blog-list">
         {% for post in site.related_posts limit:4 %}
+          {% comment %}<!-- list each post once, by its original, and not this post's other version -->{% endcomment %}
+          {% if post.translation %}{% continue %}{% endif %}
+          {% if page.translation_key and post.translation_key == page.translation_key %}{% continue %}{% endif %}
           {% include blog-entry.html %}
         {% endfor %}
       </div>

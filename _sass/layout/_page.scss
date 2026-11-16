@@ -162,6 +162,13 @@
     font-size: $type-size-6;
   }
 
+  /* Images on a line of their own are centered */
+  p > img:only-child,
+  p > a:only-child > img {
+    display: block;
+    margin-inline: auto;
+  }
+
   /* paragraph indents */
   p {
     margin: 0 0 $indent-var;

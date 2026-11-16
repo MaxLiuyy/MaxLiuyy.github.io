@@ -178,6 +178,51 @@ h1, h2, h3, h4, h5, h6, strong, b {
     font-size: 0.8em;
 }
 
+/* 中文 / EN switch above the blog list and on a post written in both languages: the language in
+   use reads in the text color, the other one faded */
+.lang-switch {
+    display: flex;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 0.4em;
+    color: var(--global-text-color);
+    font-size: 0.8em;
+
+    > span {
+        opacity: 0.4;
+    }
+
+    button {
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        font: inherit;
+        opacity: 0.6;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &[aria-pressed="true"] {
+            opacity: 1;
+            font-weight: bold;
+        }
+    }
+}
+
+.post-lang {
+    > span[aria-hidden] {
+        margin: 0 0.25em;
+    }
+
+    > [aria-current] {
+        color: var(--global-text-color);
+        font-weight: bold;
+    }
+}
+
 /* Related posts under a post: the same entries, smaller, with the subtitle a step below the title */
 .page__related .blog-list {
     margin-top: 0.8em;

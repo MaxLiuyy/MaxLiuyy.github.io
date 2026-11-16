@@ -204,6 +204,48 @@ $(document).ready(function () {
     }
   }
 
+  // Blog languages: a post written in both Chinese and English has one version per language.
+  // Blog lists show each such post in the reader's language: the one picked with the 中文 / EN
+  // switch, or the browser's language until they pick one. A post without that language shows
+  // its original. Picking a language on a post page is remembered the same way.
+  const LANG_KEY = "blog-lang";
+  const chosenLang = () => {
+    try {
+      return localStorage.getItem(LANG_KEY);
+    } catch (e) {
+      return null;
+    }
+  };
+  const chooseLang = (lang) => {
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch (e) {
+      // private windows may refuse storage; the choice then lasts for this page only
+    }
+  };
+  const showLang = (lang) => {
+    document.querySelectorAll(".blog-entry[data-translations]").forEach((entry) => {
+      const versions = [...entry.querySelectorAll(".blog-entry__version")];
+      const shown = versions.find((version) => version.dataset.lang === lang) || versions.find((version) => version.hasAttribute("data-original"));
+      versions.forEach((version) => { version.hidden = version !== shown; });
+    });
+    document.querySelectorAll(".lang-switch [data-lang-choice]").forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.langChoice === lang));
+    });
+  };
+  document.querySelectorAll(".lang-switch [data-lang-choice]").forEach((button) => {
+    button.addEventListener("click", () => {
+      chooseLang(button.dataset.langChoice);
+      showLang(button.dataset.langChoice);
+    });
+  });
+  document.querySelectorAll(".post-lang [data-lang-choice]").forEach((link) => {
+    link.addEventListener("click", () => chooseLang(link.dataset.langChoice));
+  });
+  if (document.querySelector(".blog-entry[data-translations], .lang-switch")) {
+    showLang(chosenLang() || (/^zh\b/i.test(navigator.language) ? "zh" : "en"));
+  }
+
   // SCSS SETTINGS - These should be the same as the settings in the relevant files
   const scssLarge = 925;          // pixels, from /_sass/_themes.scss
   const scssMastheadHeight = 70;  // pixels, from the current theme (e.g., /_sass/theme/_default.scss)

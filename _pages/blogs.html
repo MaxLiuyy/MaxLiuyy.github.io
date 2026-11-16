@@ -15,10 +15,20 @@ redirect_from:
 {% comment %}
   All posts in one column, newest first. Each entry (_includes/blog-entry.html) shows the
   title and date, then the post's subtitle and tags (both optional, set from the note's
-  properties when publishing).
+  properties when publishing). A post in two languages is listed once, by its original; the
+  中文 / EN switch (shown once any post has a translation) picks which version the list shows.
 {% endcomment %}
+{% assign translated = site.posts | where: "translation", true %}
+{% if translated.size > 0 %}
+<div class="lang-switch" role="group" aria-label="Language">
+  <button type="button" lang="zh" data-lang-choice="zh">中文</button>
+  <span aria-hidden="true">/</span>
+  <button type="button" lang="en" data-lang-choice="en">EN</button>
+</div>
+{% endif %}
 <div class="blog-list">
   {% for post in site.posts %}
+    {% if post.translation %}{% continue %}{% endif %}
     {% include blog-entry.html %}
   {% else %}
     <p class="blog-empty">No posts yet.</p>

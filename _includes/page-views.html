@@ -1,7 +1,8 @@
 {% comment %}
   This page's visitor count with an eye icon, from GoatCounter (site code in _config.yml).
-  include.before is a separator shown with the count. Hidden until the count arrives, so
+  include.paths lists the counted paths, space-separated (a post's language versions count
+  together), default this page; include.before is a separator shown with the count. Hidden until the count arrives, so
   nothing shows if GoatCounter is unreachable. The count is filled in by the script in
   _includes/scripts.html.
 {% endcomment %}
-{% if site.goatcounter %}<span class="page-views" data-goatcounter-path="{{ page.url }}" style="display: none;">{% if include.before %}{{ include.before }} {% endif %}<i class="fas fa-fw fa-eye" aria-hidden="true"></i> <span class="page-views__count"></span>{% if include.label %} {{ include.label }}{% endif %}</span>{% endif %}
+{% if site.goatcounter %}<span class="page-views" data-goatcounter-path="{{ include.paths | default: page.url }}" style="display: none;">{% if include.before %}{{ include.before }} {% endif %}<i class="fas fa-fw fa-eye" aria-hidden="true"></i> <span class="page-views__count"></span>{% if include.label %} {{ include.label }}{% endif %}</span>{% endif %}
