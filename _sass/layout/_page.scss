@@ -157,6 +157,11 @@
     font-size: 1em;
   }
 
+  /* A post's closing "Reference(s)" section reads smaller than the body */
+  :is(h2#reference, h2#references) ~ * {
+    font-size: $type-size-6;
+  }
+
   /* paragraph indents */
   p {
     margin: 0 0 $indent-var;
