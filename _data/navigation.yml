@@ -3,8 +3,6 @@
 # Changing the order here will adjust the order and you can also add additional
 # links. Removing a link prevents it from showing in the header, but does not
 # prevent it from being included in the site.
-#
-# CV points directly to a PDF. Place the file at files/cv.pdf when ready.
 
 main:
   - title: "Publications"
@@ -12,6 +10,3 @@ main:
 
   - title: "Blogs"
     url: /blogs/
-    
-  - title: "CV"
-    url: /files/cv.pdf
