@@ -334,4 +334,11 @@
       text-decoration: underline;
     }
   }
+
+  // Inline SVG icons sized like the Font Awesome fa-fw icons next to them
+  .icon-xhs {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: -0.3em;
+  }
 }

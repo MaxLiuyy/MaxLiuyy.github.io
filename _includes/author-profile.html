@@ -32,6 +32,12 @@
       {% if author.github %}
         <li><a href="https://github.com/{{ author.github }}"><i class="fab fa-fw fa-github icon-pad-right" aria-hidden="true"></i>GitHub</a></li>
       {% endif %}
+      {% if author.twitter %}
+        <li><a href="https://x.com/{{ author.twitter }}"><i class="fab fa-fw fa-x-twitter icon-pad-right" aria-hidden="true"></i>X</a></li>
+      {% endif %}
+      {% if author.xiaohongshu %}
+        <li><a href="{{ author.xiaohongshu }}">{% include icons/xiaohongshu.svg %}小红书</a></li>
+      {% endif %}
       {% if author.email %}
         <li><a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>{{ site.data.ui-text[site.locale].email_label | default: "Email" }}</a></li>
       {% endif %}
