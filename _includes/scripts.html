@@ -7,11 +7,14 @@
 <script data-goatcounter="https://{{ site.goatcounter }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 <script>
   /* Fill each [data-goatcounter-path] (see _includes/page-views.html) with the visitor count of
-     its paths added together */
+     its paths added together. Without a date range GoatCounter can serve an all-time count that is
+     many hours old, so ask for everything from 2020 up to tomorrow (the end date also changes the
+     cached URL once a day). */
+  var tomorrow = new Date(Date.now() + 864e5).toISOString().slice(0, 10);
   document.querySelectorAll("[data-goatcounter-path]").forEach(function (el) {
     var paths = el.getAttribute("data-goatcounter-path").split(" ").filter(Boolean);
     Promise.all(paths.map(function (path) {
-      return fetch("https://{{ site.goatcounter }}.goatcounter.com/counter/" + encodeURIComponent(path) + ".json")
+      return fetch("https://{{ site.goatcounter }}.goatcounter.com/counter/" + encodeURIComponent(path) + ".json?start=2020-01-01&end=" + tomorrow)
         .then(function (r) {
           if (r.status === 404) return 0;
           if (!r.ok) throw new Error(r.status);
