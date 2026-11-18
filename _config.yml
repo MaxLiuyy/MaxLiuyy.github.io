@@ -139,7 +139,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter
+  username               : &twitter "MaxLiu0"
 facebook:
   username               :
   app_id                 :
