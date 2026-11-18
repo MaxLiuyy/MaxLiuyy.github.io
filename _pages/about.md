@@ -14,7 +14,7 @@ I'm Yiyang Liu (刘逸阳), an undergraduate at Xingjian College, Tsinghua Unive
 
 I lead pre-training at <mark>Discover Robotics</mark>, where we build foundation models for robots. Some things that I've come to believe: start simple; evaluation matters most (measure how a model grows instead of whether it passes!);  value data by what it teaches the model (not by how clean it looks).
 
-I'm always happy to chat. So please contact me! (maybe [email](mailto:maxliuyy@gmail.com) me is a great choice)
+I'm always happy to chat and open to collaboration. If anything here interests you, feel free to drop me an [email](mailto: maxliuyy@gmail.com).
 
 ## Research Interests
 I believe general-purpose robots will emerge from scale, as language models did. I'm interested in the long-term questions behind this bet:
@@ -41,4 +41,4 @@ I like well-made tools (especially digital ones), clear writing and simple desig
 | May 05, 2026 | Our paper [CFG-Ctrl](https://arxiv.org/abs/2603.03281) was accepted to CVPR 2026 and selected as a <mark>Highlight</mark>. |
 |              |                                                                                                                   |
 
-<!-- obsidian_homepage_publish_id: 1794712751849-tjysvhx4 -->
+<!-- obsidian_homepage_publish_id: 1794977401682-8lfy7jwi -->
